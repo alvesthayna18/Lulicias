@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lulícias Boutique de Açúcar</title>
+
+<style>
+
+:root {
+    --pink-dark: #d96f8b;
+    --pink: #eea1b4;
+    --pink-light: #fce4eb;
+    --pink-soft: #fff2f5;
+    --white: #ffffff;
+    --text: #754453;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+    color: var(--text);
+
+    background: linear-gradient(
+        135deg,
+        #fff0f4 0%,
+        #fbd5e0 45%,
+        #f5b9cb 100%
+    );
+}
+
+/* CORAÇÕES FLUTUANTES */
+
+.floating-heart {
+    position: fixed;
+    bottom: -100px;
+    width: 65px;
+    height: 75px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: floatHeart linear forwards;
+}
+
+.floating-heart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.floating-heart path {
+    fill: none;
+    stroke: #e98ba5;
+    stroke-width: 13;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(-8deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.35;
+    }
+
+    80% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(12deg);
+        opacity: 0;
+    }
+}
+
+/* CARTÃO PRINCIPAL 3D */
+
+.card {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 390px);
+    min-height: 260px;
+
+    padding: 40px 25px;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #fffafd 55%,
+        #fff0f5 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.95);
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 3px 5px rgba(255,255,255,0.9) inset,
+        0 -3px 8px rgba(225,145,168,0.10) inset,
+        0 8px 12px rgba(176,92,119,0.12),
+        0 20px 35px rgba(176,92,119,0.18),
+        0 35px 65px rgba(139,68,94,0.16);
+
+    transform: perspective(1000px) translateY(-3px);
+
+    animation: appear 0.7s ease, cardFloat 5s ease-in-out infinite;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 25px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.9),
+        rgba(255,174,198,0.35),
+        rgba(255,255,255,0.7)
+    );
+
+    z-index: -1;
+    filter: blur(9px);
+    opacity: 0.75;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-3px) scale(1);
+    }
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: perspective(1000px) translateY(-3px);
+    }
+
+    50% {
+        transform: perspective(1000px) translateY(-8px);
+    }
+}
+
+/* CORAÇÃO DECORATIVO */
+
+.logo-heart {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 15px;
+}
+
+.logo-heart path {
+    fill: none;
+    stroke: var(--pink-dark);
+    stroke-width: 12;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+h1 {
+    font-size: 23px;
+    line-height: 1.45;
+    color: var(--pink-dark);
+    margin-bottom: 30px;
+}
+
+/* BOTÕES */
+
+.buttons {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+    min-height: 48px;
+}
+
+button {
+    position: relative;
+
+    border: 1px solid rgba(255,255,255,0.8);
+
+    padding: 13px 30px;
+    min-width: 95px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.3s;
+
+    touch-action: manipulation;
+}
+
+/* BOTÃO SIM */
+
+#yes {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #e58ba5,
+        #d96f8b
+    );
+
+    box-shadow:
+        0 0 7px rgba(255,145,180,0.65),
+        0 0 16px rgba(235,119,157,0.55),
+        0 0 28px rgba(235,119,157,0.25),
+        0 5px 10px rgba(180,80,112,0.2);
+
+    animation: yesGlow 2s ease-in-out infinite;
+}
+
+#yes:hover {
+    background: #c75d7c;
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 10px rgba(255,145,180,0.9),
+        0 0 25px rgba(235,119,157,0.8),
+        0 0 40px rgba(235,119,157,0.45);
+}
+
+@keyframes yesGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 7px rgba(255,145,180,0.55),
+            0 0 16px rgba(235,119,157,0.4),
+            0 5px 10px rgba(180,80,112,0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px rgba(255,145,180,0.95),
+            0 0 25px rgba(235,119,157,0.75),
+            0 0 38px rgba(235,119,157,0.4);
+    }
+}
+
+/* BOTÃO NÃO */
+
+#no {
+    color: var(--pink-dark);
+
+    background: linear-gradient(
+        135deg,
+        #fff5f8,
+        #fce4eb
+    );
+
+    box-shadow:
+        0 0 7px rgba(255,174,198,0.65),
+        0 0 16px rgba(235,119,157,0.4),
+        0 5px 10px rgba(180,80,112,0.12);
+
+    animation: noGlow 2.5s ease-in-out infinite;
+}
+
+/* BOTÃO NÃO FORA DO CARTÃO */
+
+#no.moving {
+    position: fixed !important;
+    z-index: 9999;
+    margin: 0;
+
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    transition:
+        left 0.18s ease,
+        top 0.18s ease;
+}
+
+@keyframes noGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 7px rgba(255,174,198,0.5),
+            0 0 15px rgba(235,119,157,0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px rgba(255,174,198,0.9),
+            0 0 23px rgba(235,119,157,0.6);
+    }
+}
+
+/* MENSAGEM FINAL */
+
+.success {
+    display: none;
+    animation: appear 0.6s ease;
+}
+
+.success h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.success p {
+    font-size: 15px;
+    color: #b66c82;
+    line-height: 1.6;
+}
+
+.success .logo-heart {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 18px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* CELULAR */
+
+@media (max-width: 400px) {
+    .card {
+        padding: 35px 18px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- CARTÃO PRINCIPAL -->
+
+<main class="card">
+
+    <!-- PERGUNTA -->
+
+    <section id="question">
+
+        <svg class="logo-heart"
+             viewBox="0 0 500 500"
+             aria-hidden="true">
+
+            <path d="
+                M 95 190
+                C 55 145, 70 65, 150 55
+                C 205 45, 240 85, 250 105
+                C 290 55, 370 35, 425 90
+                C 465 130, 445 195, 420 225
+                C 370 290, 275 345, 210 405
+                C 160 450, 100 430, 115 365
+            "/>
+
+        </svg>
+
+        <h1>
+            Vamos pedir sua sobremesa luliciosa? 🥰
+        </h1>
+
+        <div class="buttons">
+
+            <button id="yes">
+                Sim!
+            </button>
+
+            <button id="no">
+                Não
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESPOSTA POSITIVA -->
+
+    <section class="success" id="success">
+
+        <svg class="logo-heart"
+             viewBox="0 0 500 500"
+             aria-hidden="true">
+
+            <path d="
+                M 95 190
+                C 55 145, 70 65, 150 55
+                C 205 45, 240 85, 250 105
+                C 290 55, 370 35, 425 90
+                C 465 130, 445 195, 420 225
+                C 370 290, 275 345, 210 405
+                C 160 450, 100 430, 115 365
+            "/>
+
+        </svg>
+
+        <h1>
+            Eu sabia que não resistiria, agora é só escolher seu docinho 🩷
+        </h1>
+
+        <p>
+            Uma escolha deliciosa espera por você!
+        </p>
+
+    </section>
+
+</main>
+
+
+<script>
+
+// ELEMENTOS
+
+const yesButton = document.getElementById("yes");
+const noButton = document.getElementById("no");
+
+const question = document.getElementById("question");
+const success = document.getElementById("success");
+
+let noButtonMoved = false;
+
+
+// BOTÃO SIM
+
+yesButton.addEventListener("click", function() {
+
+    question.classList.add("hidden");
+
+    noButton.classList.add("hidden");
+
+    success.style.display = "block";
+
+});
+
+
+// BOTÃO NÃO - NUNCA DESAPARECE
+
+function moveNoButton() {
+
+    if (question.classList.contains("hidden")) {
+        return;
+    }
+
+    // Move o botão diretamente para o body.
+    // Assim ele não sofre interferência da animação 3D do cartão.
+
+    if (!noButtonMoved) {
+
+        document.body.appendChild(noButton);
+
+        noButtonMoved = true;
+
+    }
+
+    noButton.classList.add("moving");
+
+    const margin = 15;
+
+    const buttonWidth = noButton.offsetWidth;
+    const buttonHeight = noButton.offsetHeight;
+
+    const screenWidth = document.documentElement.clientWidth;
+    const screenHeight = document.documentElement.clientHeight;
+
+    const maxX = Math.max(
+        margin,
+        screenWidth - buttonWidth - margin
+    );
+
+    const maxY = Math.max(
+        margin,
+        screenHeight - buttonHeight - margin
+    );
+
+    // NOVA POSIÇÃO ALEATÓRIA DENTRO DA TELA
+
+    const randomX = margin +
+        Math.random() * Math.max(0, maxX - margin);
+
+    const randomY = margin +
+        Math.random() * Math.max(0, maxY - margin);
+
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
+
+    // GARANTE QUE O BOTÃO CONTINUE VISÍVEL
+
+    noButton.style.display = "block";
+    noButton.style.visibility = "visible";
+    noButton.style.opacity = "1";
+
+}
+
+
+// COMPUTADOR: FOGE QUANDO O MOUSE SE APROXIMA
+
+noButton.addEventListener(
+    "mouseenter",
+    moveNoButton
+);
+
+
+// CELULAR: FOGE QUANDO TENTAM TOCAR
+
+noButton.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        moveNoButton();
+
+    },
+    { passive: false }
+);
+
+
+// SE CONSEGUIR CLICAR, ELE FOGE NOVAMENTE
+
+noButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.preventDefault();
+
+        moveNoButton();
+
+    }
+);
+
+
+// AJUSTA A POSIÇÃO QUANDO A TELA MUDA
+
+window.addEventListener("resize", function() {
+
+    if (
+        noButtonMoved &&
+        !question.classList.contains("hidden")
+    ) {
+
+        moveNoButton();
+
+    }
+
+});
+
+
+// CORAÇÕES ANIMADOS
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("floating-heart");
+
+    heart.innerHTML = `
+        <svg viewBox="0 0 500 500">
+
+            <path d="
+                M 95 190
+                C 55 145, 70 65, 150 55
+                C 205 45, 240 85, 250 105
+                C 290 55, 370 35, 425 90
+                C 465 130, 445 195, 420 225
+                C 370 290, 275 345, 210 405
+                C 160 450, 100 430, 115 365
+            "/>
+
+        </svg>
+    `;
+
+    const size = 35 + Math.random() * 45;
+
+    heart.style.left = Math.random() * 95 + "vw";
+
+    heart.style.width = size + "px";
+    heart.style.height = size + "px";
+
+    const duration = 8 + Math.random() * 7;
+
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, duration * 1000);
+
+}
+
+
+// CRIA NOVOS CORAÇÕES
+
+setInterval(createHeart, 900);
+
+</script>
+
+</body>
+</html>
